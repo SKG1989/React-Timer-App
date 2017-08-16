@@ -36,7 +36,7 @@ var Countdown = React.createClass({
             });
 
             if(newCount === 0){
-                setState({ countdownStatus: 'stopped' });
+                this.setState({ countdownStatus: 'stopped' });
             }
         } ,1000);
     }, handleSetCountdown: function (seconds) {
@@ -47,6 +47,9 @@ var Countdown = React.createClass({
     },
     handleStatusChange: function (newStatus) {
         this.setState({countdownStatus: newStatus});
+    },
+    componentWillUnmount: function () {
+        clearInterval(this.timer);
     },
    render: function () {
        var {count, countdownStatus} = this.state;
